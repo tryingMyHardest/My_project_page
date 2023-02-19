@@ -72,6 +72,7 @@ li:not(:last-child) {
     position: relative;
     width: 50%;
     margin: auto;
+    margin-bottom: 25px;
     box-shadow: 5px 5px 10px #232323,
     -5px -5px 10px #232323;
 }
