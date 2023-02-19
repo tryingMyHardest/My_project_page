@@ -1,0 +1,104 @@
+body{
+    background-image: url('background.svg');
+    color: #feffff;
+    letter-spacing: .75px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+@font-face{
+    font-family: Ailerons;
+    src: url('Ailerons-Typeface.otf');
+}
+
+h1{
+    font-family: Ailerons;
+    font-size: 60px;
+    line-height: 60px;
+    padding-top: 2.5px;
+}
+
+#intro{
+    width: 50%;
+    margin: auto;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    background: rgba(0,0,0,.25);
+    box-shadow: 0px 0px 100px 5px #000000;
+}
+
+#code{
+    width: 80%;
+    margin: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    overflow: auto;
+}
+
+#editor {
+    position: relative;
+    float: left;
+    margin-left: 10px;
+    height: 400px;
+    width: 65%;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #232323,
+    -5px -5px 10px #232323;
+    
+}
+
+ul{
+    list-style: none;
+    float: right;
+    margin-right: 10px;
+    width: 25%;
+    background: #592b82;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #232323,
+    -5px -5px 10px #232323;
+}
+
+ul li{
+    float: right;
+    text-align: right;
+}
+
+li:not(:last-child) { 
+    margin-bottom: 25px;  
+}
+
+#results{
+    position: relative;
+    width: 50%;
+    margin: auto;
+    box-shadow: 5px 5px 10px #232323,
+    -5px -5px 10px #232323;
+}
+
+#output{
+    background-color: #feffff;
+    color: black;
+    padding: 15px;
+    margin-top: 5px;
+    position: relative;
+    height: 100px;
+    border-radius: 10px;
+}
+
+button{
+    border-style: none;
+    display: block;
+    width: 100%;
+    color: #feffff;
+    letter-spacing: .5px;
+    background-color: #9d9ba0;
+    border-radius: 2.5px;
+    box-shadow: 0px 2px 3px #232323;
+    padding: 6px;
+}
+
+button:hover{
+    background-color: #1b2e39;
+    cursor: pointer;
+}

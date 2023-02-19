@@ -1,12 +1,34 @@
 <!DOCTYPE html>
-<!--whc: This is the basic starter index page to be used when creating students' first home pages.-->
 <html>
     <head>
-        <title>My webpage</title>
+        <link rel="icon" href="src/css/favicon-c.png">
+        <title>Online Code Editor</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="src/css/style.css">
     </head>
-    <body><h1>Hello World!</h1>
-    <p>This is my webpage.</p>
-    <p>Here is a picture of a duck.</p>
-        <img src="https://www.clipartmax.com/png/middle/137-1377063_duck-clipart-yellow-duck-duck-clipart-yellow.png" 
-            alt="Duck Clipart Yellow Duck - Duck Clipart Yellow@clipartmax.com"> </body>
+    <body>
+    <div id="intro">
+        <h1>Online Code Editor</h1>
+        <p>This is a free online code editor.<br>It utilizes Ace Editor and Judge0 CE API to display and compile the code.</p>
+
+        <p>Try it out with some code presets on the right or try your own!<br>Compiler only works with Python 3.6 or newer.</p>
+    </div>
+    <div id="code">
+        <div id="editor">print("Welcome :)")</div>
+        <ul>
+            <li><button id="hello" onclick="preSet('helloWorld')">Hello World</button>
+            <p>This code prints a simple "Hello World" message</p></li>
+            <li><button id="time" onclick="preSet('time')">Print the time</button>
+            <p>This code displays the current time in military format</p></li>
+            <li><button id="pi" onclick="preSet('pi')">Approximate Pi</button>
+            <p>This code approximates Pi - Change the value of n to alter the results</p></li>
+        </ul>
+    </div>
+        <div id="results">
+            <button onclick="handleCompile()">Compile</button>
+            <div id="output">Output</div>
+        </div>     
+    </body>
+    <script src="src/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="src/editorAndCompile.js"></script>
 </html>
