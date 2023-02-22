@@ -15,16 +15,30 @@ h1{
     font-size: 60px;
     line-height: 60px;
     padding-top: 2.5px;
+    padding-bottom: 2.5px;
+    background: rgba(0,0,0,.25);
+    box-shadow: 0px 0px 100px 5px #000000;
 }
 
-#intro{
+#header{
     width: 50%;
     margin: auto;
     margin-bottom: 5px;
     padding-bottom: 5px;
     text-align: center;
-    background: rgba(0,0,0,.25);
+    
+}
+
+#info{
+    display: none;
+    position: absolute;
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+    margin-top: 100px;
+    background: rgba(0,0,0,.75);
     box-shadow: 0px 0px 100px 5px #000000;
+    z-index: 1;
 }
 
 #code{
@@ -102,6 +116,24 @@ button{
 button:hover{
     background-color: #1b2e39;
     cursor: pointer;
+}
+
+#infoButton{
+    width: fit-content;
+}
+
+.xButton{
+    width: 5%;
+    float: left;
+    box-shadow: none;
+    background: none;
+    border-style: none;
+    color: rgb(255, 120, 120);
+}
+
+.xButton:hover{
+    background: none;
+    color: #feffff;
 }
 
 .dot-flashing {

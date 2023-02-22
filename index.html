@@ -7,12 +7,20 @@
         <link rel="stylesheet" href="src/css/style.css">
     </head>
     <body>
-    <div id="intro">
+    <div id="header">
         <h1>Online Code Editor</h1>
         <p>This is a free online code editor.<br>It utilizes Ace Editor and Judge0 CE API to display and compile the code.</p>
 
-        <p>Try it out with some code presets on the right or try your own!<br>Compiler only works with Python 3.6 or newer.<br>
-        * NOTICE - 500 daily compile limit for site *</p>
+        <p>Try it out with some code presets on the right or try your own!</p>
+        <button id="infoButton" onclick="displayInfo()">More Information</button>
+        <div id="info">
+            <button class="xButton" onclick="closeInfo()">X</button>
+            <p>Compiler only works with Python 3.6 or newer.<br><br>
+            The 3 buttons on the right auto fill Python code into the editor. The buttons are ordered by difficulty with
+        "Hello World" being beginner level and "Approximate Pi" being intermediate.</p>
+        <p>This compiler can <b>NOT</b> hand any user input currently.</p>
+            <p>* <b>NOTICE</b> - 500 daily compile limit for site *</p>
+        </div>
     </div>
     
     <div id="code">
