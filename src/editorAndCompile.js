@@ -5,6 +5,11 @@ var editor = ace.edit("editor");
     
 const handleCompile = () => {
 
+    let button = document.getElementById("compileButton");
+
+    button.innerHTML = "<div class='dot-flashing'></div>";
+    button.setAttribute('disabled', 'true');
+
     const editorCode = editor.getValue();
 
     console.log("Code: ", editorCode);
@@ -110,7 +115,8 @@ const handleCompile = () => {
                 default:
                     msg = "hit default";
         }*/
-
+        button.innerHTML = "Compile";
+        button.removeAttribute('disabled');
         document.getElementById('output').innerHTML = msg;
     }
 }

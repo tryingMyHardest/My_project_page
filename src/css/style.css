@@ -79,7 +79,7 @@ li:not(:last-child) {
 
 #output{
     background-color: #feffff;
-    color: black;
+    color: #232323;
     padding: 15px;
     margin-top: 5px;
     position: relative;
@@ -89,10 +89,10 @@ li:not(:last-child) {
 
 button{
     border-style: none;
-    display: block;
     width: 100%;
     color: #feffff;
     letter-spacing: .5px;
+    height: 30px;
     background-color: #9d9ba0;
     border-radius: 2.5px;
     box-shadow: 0px 2px 3px #232323;
@@ -103,3 +103,50 @@ button:hover{
     background-color: #1b2e39;
     cursor: pointer;
 }
+
+.dot-flashing {
+    position: relative;
+    margin: auto;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #feffff;
+    color: #feffff;
+    animation: dot-flashing 1s infinite linear alternate;
+    animation-delay: 0.5s;
+  }
+  .dot-flashing::before, .dot-flashing::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+  }
+  .dot-flashing::before {
+    left: -15px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #feffff;
+    color: #feffff;
+    animation: dot-flashing 1s infinite alternate;
+    animation-delay: 0s;
+  }
+  .dot-flashing::after {
+    left: 15px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #feffff;
+    color: #feffff;
+    animation: dot-flashing 1s infinite alternate;
+    animation-delay: 1s;
+  }
+  
+  @keyframes dot-flashing {
+    0% {
+      background-color: #feffff;
+    }
+    50%, 100% {
+      background-color: rgba(225, 225, 225, 0.2);
+    }
+  }
