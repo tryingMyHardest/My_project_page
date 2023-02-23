@@ -1,3 +1,10 @@
+const getIDS = () => {
+    fetch("https://ce.judge0.com/languages/").then(response => response.json())
+    .then(function (response) {
+        const langArray = response;
+    });
+}
+
 var editor = ace.edit("editor");
             editor.setTheme("ace/theme/dawn");
             editor.session.setMode("ace/mode/python");
@@ -17,6 +24,15 @@ const closeInfo = () => {
 
     but.removeAttribute("style");
     info.removeAttribute("style");
+}
+
+const changeLang = () => {
+    let option = document.getElementById("langSelect");
+
+    language_id = option.value;
+
+    console.log(option.value);
+    console.log("id",language_id)
 }
     
 const handleCompile = () => {
@@ -167,3 +183,19 @@ print(calculatePI(n))`
 
     editor.setValue(str, 1);
 }
+
+const testLangId = () => {
+ /* fetch("https://ce.judge0.com/languages/").then(response => response.json())
+.then(function (response) {
+    console.log(response);
+
+    const langArray = response;
+
+    
+});*/
+
+document.getElementById("output").innerHTML = langArray[1].id;
+
+  
+}
+

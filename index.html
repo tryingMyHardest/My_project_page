@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="src/css/style.css">
     </head>
-    <body>
+    <body onload="getIDS()">
     <div id="header">
         <h1>Online Code Editor</h1>
         <p>This is a free online code editor.<br>It utilizes Ace Editor and Judge0 CE API to display and compile the code.</p>
@@ -22,6 +22,14 @@
             <p>* <b>NOTICE</b> - 500 daily compile limit for site *</p>
         </div>
     </div>
+    
+    <select id="langSelect" onchange="changeLang()">
+        <option value="71">Python</option>
+        <option>Java</option>
+        <option>C++</option>
+    </select> 
+
+    <button onclick="testLangId()">TEST</button>
     
     <div id="code">
         <div id="editor">print("Welcome :)")</div>
