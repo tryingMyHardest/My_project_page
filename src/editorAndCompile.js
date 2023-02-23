@@ -1,7 +1,26 @@
+var language_id;
+var langArray;
+
 const getIDS = () => {
     fetch("https://ce.judge0.com/languages/").then(response => response.json())
     .then(function (response) {
-        const langArray = response;
+        langArray = response;
+        
+        let dropDown = document.getElementById('langSelect');
+
+        for(var i = 0; i < langArray.length; i++){
+            let option = document.createElement('option');
+            
+
+            option.setAttribute('value', langArray[i].id);
+            
+            let langName = document.createTextNode(langArray[i].name);
+            option.appendChild(langName);
+
+            dropDown.appendChild(option);
+        }
+
+        changeLang(dropDown);
     });
 }
 
@@ -26,13 +45,15 @@ const closeInfo = () => {
     info.removeAttribute("style");
 }
 
-const changeLang = () => {
-    let option = document.getElementById("langSelect");
+const changeLang = (dropDown) => {
+    language_id = dropDown.value;
+    console.log("id",language_id);
 
-    language_id = option.value;
+    let name = dropDown.options[dropDown.selectedIndex].text.split(" (");
 
-    console.log(option.value);
-    console.log("id",language_id)
+    editor.session.setMode('ace/mode/' + name[0]);
+
+    console.log(name);
 }
     
 const handleCompile = () => {
@@ -50,13 +71,6 @@ const handleCompile = () => {
 
     const API_URL = 'https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=true&fields=*';
     
-    const formData = {
-        language_id: 71,
-        source_code: test,
-    }
-
-    console.log(formData);
-    
     const options = {
     method: 'POST',
     headers: {
@@ -65,7 +79,7 @@ const handleCompile = () => {
         'X-RapidAPI-Key': '0f362b5a43msh406f5870c7e287ep11dc52jsnc6ef63ed4990',
         'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
     },
-    body: '{"language_id":71,"source_code":"' + test + '"}',
+    body: '{"language_id":' + language_id + ',"source_code":"' + test + '"}',
     };
 
     fetch(API_URL, options).then(response => response.json())
@@ -194,7 +208,7 @@ const testLangId = () => {
     
 });*/
 
-document.getElementById("output").innerHTML = langArray[1].id;
+document.getElementById("output").innerHTML = language_id;
 
   
 }
