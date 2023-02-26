@@ -29,22 +29,6 @@ var editor = ace.edit("editor");
             editor.session.setMode("ace/mode/python");
             editor.resize();
 
-const displayInfo = () => {
-    let info = document.getElementById("info");
-    let but = document.getElementById("infoButton");
-
-    but.setAttribute("style", "display:none");
-    info.setAttribute("style", "display:block");
-}
-
-const closeInfo = () => {
-    let info = document.getElementById("info");
-    let but = document.getElementById("infoButton");
-
-    but.removeAttribute("style");
-    info.removeAttribute("style");
-}
-
 const changeLang = (dropDown) => {
     language_id = dropDown.value;
     console.log("id",language_id);

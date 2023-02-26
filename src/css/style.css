@@ -30,18 +30,15 @@ h1{
 }
 
 #info{
-    display: none;
-    position: absolute;
-    width: 50%;
-    margin: auto;
     padding: 10px;
-    margin-top: 100px;
     background: rgba(0,0,0,.75);
-    box-shadow: 0px 0px 100px 5px #000000;
+    box-shadow: 0px 0px 100px 25px #000000;
     z-index: 1;
 }
 
 #code{
+    display: flex;
+    justify-content: space-evenly;
     width: 80%;
     margin: auto;
     padding-top: 50px;
@@ -50,9 +47,6 @@ h1{
 }
 
 #editor {
-    position: relative;
-    float: left;
-    margin-left: 10px;
     height: 400px;
     width: 65%;
     border-radius: 10px;
@@ -61,10 +55,21 @@ h1{
     
 }
 
+details{
+    width: 50%;
+    margin: auto;
+    position: absolute;
+    z-index: 1;
+
+}
+
+details::shadow{
+    background: rgba(0,0,0,.75);
+    box-shadow: 0px 0px 100px 5px #000000;
+}
+
 ul{
     list-style: none;
-    float: right;
-    margin-right: 10px;
     width: 25%;
     background: #592b82;
     padding: 10px;
