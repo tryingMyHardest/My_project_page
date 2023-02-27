@@ -3,37 +3,33 @@
     <head>
         <link rel="icon" href="src/css/favicon-c.png">
         <title>Online Code Editor</title>
-        <meta charset="utf-8" name="viewport" content="width=device-width, intial-scale=1">
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="src/css/style.css">
     </head>
-    <body onload="getIDS()">
+    <body onload="preSet(54)"">
     <div id="header">
         <h1>Online Code Editor</h1>
         <p>This is a free online code editor.<br>It utilizes Ace Editor and Judge0 CE API to display and compile the code.</p>
 
-        <p>Try it out with some code presets on the right or write your own!</p>
+        <p>Try it out with some code presets or write your own!</p>
         <details>
             <summary>More Info</summary>
-            <div id="info"><p>Compiler only works with Python 3.6 or newer.<br><br>
-                The 3 buttons on the right auto fill Python code into the editor. The buttons are ordered by difficulty with
-            "Hello World" being beginner level and "Approximate Pi" being intermediate.</p>
+            <div id="info"><p>Compiler now works with multiple languages (versions are listed)<br><br>
             <p>This compiler can <b>NOT</b> handle any user input currently.</p>
                 <p>* <b>NOTICE</b> - 500 daily compile limit for site *</p></div>
         </details>
     </div>
     
-    <select id="langSelect" onchange="changeLang(this)"></select> 
-    
     <div id="code">
-        <div id="editor">print("Welcome :)")</div>
-        <ul>
-            <li><button id="hello" onclick="preSet('helloWorld')">Hello World</button>
-            <p>This code prints a simple "Hello World" message</p></li>
-            <li><button id="time" onclick="preSet('time')">Print the time</button>
-            <p>This code displays the current time in military format</p></li>
-            <li><button id="pi" onclick="preSet('pi')">Approximate Pi</button>
-            <p>This code approximates Pi - Change the value of n to alter the results</p></li>
-        </ul>
+    <select id="langSelect" onchange="changeLang(this)">
+        <option value="54">C++ (GCC 9.2.0)</option>
+        <option value="51">C# (Mono 6.6.0.161)</option>
+        <option value="62">Java (OpenJDK 13.0.1)</option>
+        <option value="63">Javascript (Node.js 12.14.0)</option>
+        <option value="68">PHP (7.4.1)</option>
+        <option value="71">Python (3.8.1)</option>
+    </select> 
+        <div id="editor"></div>
     </div>
         <div id="results">
             <button id="compileButton" onclick="handleCompile()">Compile</button>

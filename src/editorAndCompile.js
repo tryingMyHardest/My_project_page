@@ -1,43 +1,33 @@
-var language_id;
-var langArray;
-
-const getIDS = () => {
-    fetch("https://ce.judge0.com/languages/").then(response => response.json())
-    .then(function (response) {
-        langArray = response;
-        
-        let dropDown = document.getElementById('langSelect');
-
-        for(var i = 0; i < langArray.length; i++){
-            let option = document.createElement('option');
-            
-
-            option.setAttribute('value', langArray[i].id);
-            
-            let langName = document.createTextNode(langArray[i].name);
-            option.appendChild(langName);
-
-            dropDown.appendChild(option);
-        }
-
-        changeLang(dropDown);
-    });
-}
+var language_id = 54;
 
 var editor = ace.edit("editor");
             editor.setTheme("ace/theme/dawn");
-            editor.session.setMode("ace/mode/python");
+            editor.session.setMode("ace/mode/c_cpp");
             editor.resize();
 
 const changeLang = (dropDown) => {
     language_id = dropDown.value;
     console.log("id",language_id);
 
-    let name = dropDown.options[dropDown.selectedIndex].text.split(" (");
+    let name;
 
-    editor.session.setMode('ace/mode/' + name[0]);
-
+    switch(language_id){
+        case "54": name = 'c_cpp';
+                break;
+        case "51": name = 'csharp';
+                break;
+        case "62": name = 'java';
+                break;
+        case "63": name = 'javascript';
+                break;
+        case "68": name = 'php';
+                break;
+        case "71": name = 'python';
+    }
+    editor.session.setMode('ace/mode/' + name);
     console.log(name);
+
+    preSet(language_id);
 }
     
 const handleCompile = () => {
@@ -151,49 +141,41 @@ const handleCompile = () => {
     }
 }
 
-const preSet = (code) => {
+const preSet = (id) => {
     let str;
 
-    if(code === 'helloWorld'){
-        str = 'print("Hello World")';
-    }else if(code === 'time'){
+    if(id == 54){
+        str = `#include <iostream>
+using namespace std;
+        
+int main() {
+    cout << "Hello World in C++!";
+    return 0;
+}`;
+    }else if(id == 51){
         str =
-`from datetime import datetime
+`using System;
 
-now = datetime.now()
-current_time = now.strftime("%H:%M:%S")
-
-print("Current Time =", current_time)`;
-    }else if(code === 'pi'){
+class HelloWorld {
+  static void Main() {
+    Console.WriteLine("Hello World in C#!");
+  }
+}`;
+    }else if(id == 62){
         str = 
-`def calculatePI(n):
-    total = 0
-    for x in range(n):
-        total += fraction(x)
-    return 4.0 * total
-    
-def fraction(n):
-    return pow(-1.0, n)/(2.0*n+1.0)
-    
-n=10000
-print(calculatePI(n))`
+`public class Main {
+	public static void main(String[] args) {
+		System.out.println("Hello World in Java!");
+	}
+}`
+    }else if(id == 63){
+        str = `console.log("Hello World in Javascript!")`;
+    }else if(id == 68){
+        str = `echo "Hello World in PHP!"`;
+    }else if(id == 71){
+        str = `print("Hello World in Python!")`;
     }
 
     editor.setValue(str, 1);
-}
-
-const testLangId = () => {
- /* fetch("https://ce.judge0.com/languages/").then(response => response.json())
-.then(function (response) {
-    console.log(response);
-
-    const langArray = response;
-
-    
-});*/
-
-document.getElementById("output").innerHTML = language_id;
-
-  
 }
 
