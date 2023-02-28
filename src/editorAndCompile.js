@@ -1,4 +1,6 @@
 var language_id = 54;
+var start;
+var end;
 
 var editor = ace.edit("editor");
             editor.setTheme("ace/theme/dawn");
@@ -31,6 +33,8 @@ const changeLang = (dropDown) => {
 }
     
 const handleCompile = () => {
+
+    start = Date.now();
 
     let button = document.getElementById("compileButton");
 
@@ -82,18 +86,19 @@ const handleCompile = () => {
         try{
             fetch(url, options).then(reply => reply.json()).then(function (reply) {
                 console.log("response to token:", reply);
-                let statusId = reply.status;
+                let status = reply.status;
 
-            console.log("status:", statusId);
+            console.log("status:", status);
     
-            if(statusId === 1 || statusId === 2){
+            if(status.id === 1 || status.id === 2){
                 setTimeout(() => {
                     checkStatus(token);
                 }, 2000);
                 return;
             }else{
+                end = Date.now();
                 console.log("Response Data: ", reply.stdout);
-                outputData(reply.stdout);
+                outputData(reply);
                 return;
             }
             });
@@ -104,41 +109,37 @@ const handleCompile = () => {
         }
     }
 
-    const outputData = (results) => {
-        let statusId = results?.status?.id;
-
-        console.log("results" + results);
+    const outputData = (reply) => {
+       let time = (end - start)/1000;
     
-        let msg = atob(results);
-
-        console.log(msg);
-
-           /* if(statusId === 3){
-                msg = atob(results);
-            }else{
-                btoa(results?.stdout) !== null ? msg = btoa(results?.stdout) : msg = null;
-            }
+        let msg = reply.status.description + " - " + time + 'sec<br><br>';
     
-            switch(statusId){
-                case 6:
-                    msg = btoa(results?.compile_output);
-                    break;
+            switch(reply.status.id){
                 case 3:
-                    btoa(results?.stdout) !== null ? msg = btoa(results?.stdout) : msg = null;
+                    atob(reply.stdout) !== null ? msg += atob(reply.stdout) : msg += null;
                     break;
-                case 5:
-                    msg = 'Time Limited Exceeded';
-                    break;
-                case 2:
-                    console.log("case 1");
-                    break;
-                default:
-                    msg = "hit default";
-        }*/
+                case 6:
+                    msg += atob(reply.compile_output);
+        }
+
         button.innerHTML = "Compile";
         button.removeAttribute('disabled');
-        document.getElementById('output').innerHTML = msg;
+        document.getElementById('output').innerHTML = changeChar(msg);
     }
+}
+
+const changeChar = (str) => {
+    let found = true;
+
+    while(found){
+        if(str.includes('â')){
+            str = str.replace('â', '');
+        }else{
+            found = false;
+        }
+    }
+
+    return str;
 }
 
 const preSet = (id) => {
