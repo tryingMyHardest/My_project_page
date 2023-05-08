@@ -7,19 +7,23 @@
         <link rel="stylesheet" href="src/css/style.css">
     </head>
     <body onload="preSet(54)">
-    <div id="header">
         <h1>Code Editor</h1>
+    <div id="header">
         <p>This is a free online code editor.<br>It utilizes Ace Editor and Judge0 CE API to display and compile the code.</p>
 
-        <p>Try it out with some code presets or write your own!</p>
-        <details>
-            <summary>More Info</summary>
-            <div id="info"><p>Compiler now works with multiple languages (versions are listed)<br><br>
-            <p>This compiler can <b>NOT</b> handle any user input currently.</p>
-                <p>* <b>NOTICE</b> - 500 daily compile limit for site *</p></div>
-        </details>
+        <p>Try it out by uploading code or writing your own!</p>
+        <p>Click on the instructions to learn more</p>
     </div>
-    
+    <details>
+            <summary>Instructions</summary>
+            <p>1. Choose which language you wish to code in via the language drop down &#40;Located above the editor&#41;</p>
+            <p>2. Upload a file or delete the contents of the editor to begin</p>
+            <p>3. Code</p>
+            <p>4. Save your work by clicking the 'Save' button under the editor<br><b>* All files will save as a .txt *</b></p>
+            <p>OPTIONAL: Give your file a name, just make sure to avoid illegal characters:</p><p class="info">\,.!;[{}()@#$%^&+=/:"*?&lt;>|</p>
+            <p>If no name is given, a default name with the following structure will be given:</p><p class="info">'code_MM-DD-YYYY_HHmmss.txt'</p><hr>
+            <p style="text-align: center ;">* <b>NOTICE</b> - 500 daily compile limit for site *</p>
+        </details>
     <div id="code">
     <select id="langSelect" onchange="changeLang(this)">
         <option value="54">C++ (GCC 9.2.0)</option>
@@ -30,7 +34,13 @@
         <option value="71">Python (3.8.1)</option>
     </select> 
         <div id="editor"></div>
+        <div class="file-management">
+            <input type="file" class="fileSelector" accept=".cpp, .cc, .cxx, .js, .php, .py, .cs, .java, .jav, .txt"/>
+            <input type="text" class="fileName" placeholder="Optional File Name"/>
+            <input type="button" onclick="clickSave()" value="Save"/>
+        </div>
     </div>
+    
         <div id="results">
             <button id="compileButton" onclick="handleCompile()">Compile</button>
             <div id="output">Output</div>

@@ -9,7 +9,6 @@ var editor = ace.edit("editor");
 
 const changeLang = (dropDown) => {
     language_id = dropDown.value;
-    console.log("id",language_id);
 
     let name;
 
@@ -27,9 +26,11 @@ const changeLang = (dropDown) => {
         case "71": name = 'python';
     }
     editor.session.setMode('ace/mode/' + name);
-    console.log(name);
 
-    preSet(language_id);
+    let file = document.querySelector(".fileSelector");
+    if(file.files.length == 0){
+        preSet(language_id);
+    }
 }
     
 const handleCompile = () => {
@@ -42,8 +43,6 @@ const handleCompile = () => {
     button.setAttribute('disabled', 'true');
 
     const editorCode = editor.getValue();
-
-    console.log("Code: ", editorCode);
 
     const test = btoa(editorCode);
 
@@ -62,13 +61,12 @@ const handleCompile = () => {
 
     fetch(API_URL, options).then(response => response.json())
     .then(function (response) {
-        console.log("Response token", response);
+        
         const token = response.token;
-        console.log(token);
+     
         checkStatus(token);
     })
     .catch(function (err) {
-        console.error(err);
 
         let error = err.response ? err.response.data : err;
     });
@@ -85,10 +83,7 @@ const handleCompile = () => {
     
         try{
             fetch(url, options).then(reply => reply.json()).then(function (reply) {
-                console.log("response to token:", reply);
                 let status = reply.status;
-
-            console.log("status:", status);
     
             if(status.id === 1 || status.id === 2){
                 setTimeout(() => {
@@ -97,7 +92,6 @@ const handleCompile = () => {
                 return;
             }else{
                 end = Date.now();
-                console.log("Response Data: ", reply.stdout);
                 outputData(reply);
                 return;
             }
@@ -180,3 +174,61 @@ class HelloWorld {
     editor.setValue(str, 1);
 }
 
+const fileSelector = document.querySelector('.fileSelector');
+  fileSelector.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    
+    const reader = new FileReader();
+    reader.onload = function () {
+        let code = reader.result;
+        editor.setValue(code, 1);
+    }
+    reader.readAsText(file);
+    editor.setValue(code, 1);
+  });
+
+
+  const saveFile = (content, fileName, fileType) => {
+    let a = document.createElement('a');
+
+    let file = new Blob([content], {type: 'text/plain'});
+
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  const clickSave = () => {
+    let content = editor.getValue();
+    const timeStamp = new Date();
+
+    let fileName;
+    
+    let date;
+
+    if(nameInput.value == ''){
+        date = timeStamp.getMonth()+1 + "-" + timeStamp.getDate() + "-" +
+        timeStamp.getFullYear() + "_" + timeStamp.getHours() + timeStamp.getMinutes() + timeStamp.getSeconds();
+        fileName = "code_" + date;
+    }else{
+        let chars = new RegExp('[\\,.!;\[\{\}\(\)@#\$%\^&\+=/:"*?<>|]');
+        
+        if(nameInput.value.match(chars)){
+            nameInput.classList.add('red');
+            nameInput.value = '';
+            return;
+        }else{
+            fileName = nameInput.value;
+        }
+    }
+
+    saveFile(content, fileName);
+    
+  }
+
+  const nameInput = document.querySelector(".fileName");
+
+  nameInput.addEventListener('change', function() {
+    nameInput.classList.remove('red');
+  })
