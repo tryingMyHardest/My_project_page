@@ -232,3 +232,17 @@ const fileSelector = document.querySelector('.fileSelector');
   nameInput.addEventListener('change', function() {
     nameInput.classList.remove('red');
   })
+
+  const h1 = document.querySelector("h1");
+
+  let lastScrollY = window.scrollY;
+
+  window.addEventListener("scroll", () => {
+    if(lastScrollY < window.scrollY){
+        h1.classList.add('hide-h1');
+    }else{
+        h1.classList.remove("hide-h1");
+    }
+
+    lastScrollY = window.scrollY;
+  })

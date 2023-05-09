@@ -232,6 +232,8 @@
         font-size: 17.5px;
     }
     body{
+        --h1-height: 60px;
+        padding-top: var(--h1-height);
         background-color: #1b2e39;
         color: #feffff;
         letter-spacing: .75px;
@@ -247,16 +249,24 @@
     /* ------------------------------------------------ Banner ------------------------------------------------ */
     
     h1{
-        position: sticky;
+        height: var(--h1-height);
+        letter-spacing: 0px;
+        position: fixed;
         top: 0;
+        width: 100%;
         margin-top: 0;
         font-family: Ailerons;
-        font-size: 3rem;
+        font-size: 2.5rem;
         padding-top: 5px;
         padding-bottom: 5px;
         padding-left: 25px;
         background: #246f9a;
         z-index: 5;
+        transition: transform .25s;
+    }
+
+    .hide-h1{
+        transform: translateY(calc(-1.5*var(--h1-height)));
     }
     
     /* -------------------------------------------- Intro --------------------------------------------------------- */
@@ -264,6 +274,7 @@
         font-size: .75rem;
         width: 75%;
         margin: auto;
+        margin-top: 25px;
         margin-bottom: 5px;
         padding: 5px;
         padding-left: 25px;
@@ -364,6 +375,7 @@
     }
     .file-management{
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         margin-top: 2px;
     }

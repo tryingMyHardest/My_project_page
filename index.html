@@ -5,12 +5,12 @@
 <link rel="icon" type="image/png" sizes="32x32" href="src/css/favicon_io/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="src/css/favicon_io/favicon-16x16.png">
 <link rel="manifest" href="src/css/favicon_io/site.webmanifest">
-        <title>Online Code Editor</title>
+        <title>Code.A</title>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="src/css/style.css">
     </head>
     <body onload="preSet(54)">
-        <h1>Code Editor</h1>
+        <h1>Code.A</h1>
     <div id="header">
         <p>This is a free online code editor.<br>It utilizes Ace Editor and Judge0 CE API to display and compile the code.</p>
 
@@ -39,8 +39,10 @@
         <div id="editor"></div>
         <div class="file-management">
             <input type="file" class="fileSelector" accept=".cpp, .cc, .cxx, .js, .php, .py, .cs, .java, .jav, .txt"/>
-            <input type="text" class="fileName" placeholder="Optional File Name"/>
-            <input type="button" onclick="clickSave()" value="Save"/>
+            <div>
+                <input type="text" class="fileName" placeholder="Optional File Name"/>
+                <input type="button" onclick="clickSave()" value="Save"/>
+            </div>
         </div>
     </div>
     
