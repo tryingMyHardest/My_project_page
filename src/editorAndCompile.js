@@ -240,7 +240,7 @@ const fileSelector = document.querySelector('.fileSelector');
   window.onscroll = () => {handleScroll()};
 
   const handleScroll = () => {
-    if(lastScrollY < window.scrollY){
+    if(lastScrollY < window.scrollY && window.scrollY > 0){
         h1.classList.add('hide-h1');
     }else{
         h1.classList.remove("hide-h1");
