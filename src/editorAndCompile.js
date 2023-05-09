@@ -237,7 +237,9 @@ const fileSelector = document.querySelector('.fileSelector');
 
   let lastScrollY = window.scrollY;
 
-  window.addEventListener("scroll", () => {
+  window.onscroll = () => {handleScroll()};
+
+  const handleScroll = () => {
     if(lastScrollY < window.scrollY){
         h1.classList.add('hide-h1');
     }else{
@@ -245,4 +247,4 @@ const fileSelector = document.querySelector('.fileSelector');
     }
 
     lastScrollY = window.scrollY;
-  })
+  }
