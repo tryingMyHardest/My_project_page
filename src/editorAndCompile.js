@@ -236,11 +236,13 @@ const fileSelector = document.querySelector('.fileSelector');
   const h1 = document.querySelector("h1");
 
   let lastScrollY = window.scrollY;
+  let anchorScroll = window.scrollY;
 
   window.addEventListener("scroll", () => {
-    if(lastScrollY < window.scrollY){
+    if(lastScrollY < window.scrollY && lastScrollY > 0){
         h1.classList.add('hide-h1');
-    }else{
+        anchorScroll = window.scrollY;
+    }else if(anchorScroll-lastScrollY > 50){
         h1.classList.remove("hide-h1");
     }
 
