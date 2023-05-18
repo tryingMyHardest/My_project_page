@@ -244,7 +244,7 @@ const fileSelector = document.querySelector('.fileSelector');
     if(lastScrollY < window.scrollY && lastScrollY > 0){
         h1.classList.add('hide-h1');
         anchorScroll = window.scrollY;
-    }else if(anchorScroll-lastScrollY > 50){
+    }else if(anchorScroll-lastScrollY > 50 || window.scrollY == 0){
         h1.classList.remove("hide-h1");
     }
 
